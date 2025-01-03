@@ -9,13 +9,32 @@ const Cards = ({ item }) => {
                 <h1 className='font-semibold text-xl mb-2'>{item.title}</h1>
                 <p>{item.desc}</p>
                 <div className='flex gap-3 mt-4'>
-                    <button className='bg-red-500 text-white px-3 py-2 rounded-md'><a href={item.live} target='_blank'>Live Preview</a></button>
-                    <button className='bg-black text-white px-3 py-2 rounded-md'>
-                        <a href={item.github} target='_blank' className='flex gap-1'>
-                            <img src={Github} alt="" className='w-6'/>
-                            Github Link
+                    {/* Always show "Live Preview" button */}
+                    <button className='bg-red-500 text-white px-3 py-2 rounded-md'>
+                        <a href={item.live} target='_blank' rel="noopener noreferrer">
+                            Live Preview
                         </a>
                     </button>
+
+                    {/* Show GitHub Link for all cards except "Automatic Fire Extinguisher For EVs" */}
+                    {item.title !== "Automatic Fire Extinguisher For EVs" && (
+                        <button className='bg-black text-white px-3 py-2 rounded-md'>
+                            <a href={item.github} target='_blank' rel="noopener noreferrer" className='flex gap-1'>
+                                <img src={Github} alt="GitHub" className='w-7 bg-white' />
+                                Github Link
+                            </a>
+                        </button>
+                    )}
+
+                    {/* Show "More About" only for the specified card */}
+                    {item.title === "Automatic Fire Extinguisher For EVs" && (
+                        <button className='bg-black text-white px-3 py-2 rounded-md'>
+                            <a href={item.more} target='_blank' rel="noopener noreferrer" className='flex gap-1'>
+                                <img src="#" alt="" className='#' />
+                                More About
+                            </a>
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
@@ -23,4 +42,3 @@ const Cards = ({ item }) => {
 }
 
 export default Cards
-
